@@ -1,0 +1,18 @@
+server:
+  port: 9010
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: "http://localhost:9001/eureka"
+spring:
+  application:
+    name: "SentinelDemo"
+  cloud:
+    sentinel:
+      eager: true
+      transport:
+        port: 8720
+        dashboard: 127.0.0.1:8081
+        heartbeat-interval-ms: 500

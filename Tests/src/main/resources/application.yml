@@ -1,0 +1,38 @@
+server:
+  port: 9005
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: "http://localhost:9001/eureka"
+spring:
+  redis:
+    host: 127.0.0.1
+    password:
+    database: 0
+    port: 6379
+    lettuce:
+      shutdown-timeout: 100ms #关闭超时时间
+      pool:
+        max-active: 100
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 0
+        enabled: false
+  application:
+    name: "Tests"
+  elasticsearch:
+    rest:
+      uris: http://localhost:9200
+feign:
+  hystrix:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus'
+  metrics:
+    tags:
+      application: ${spring.application.name}

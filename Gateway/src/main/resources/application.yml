@@ -1,0 +1,23 @@
+test:
+  uri: lb://Tests
+server:
+  port: 9003
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: "http://localhost:9001/eureka"
+
+spring:
+  application:
+    name: "Gateway"
+  cloud:
+    gateway:
+      filter:
+      discovery:
+        locator:
+          enabled: true      # 开启从注册中心动态创建路由的功能，利用微服务名进行路由
+      routes:
+        - id: route_service_one
+          uri: ${test.uri} # uri以lb://开头（lb代表从注册中心获取服务），后面接的就是你需要转发到的服务名称
+          predicates:
+            - Path=/test/**
