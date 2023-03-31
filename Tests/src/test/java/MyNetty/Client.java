@@ -1,6 +1,5 @@
 package MyNetty;
 
-import Netty.ClientHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.*;
