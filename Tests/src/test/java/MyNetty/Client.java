@@ -6,6 +6,8 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.http.HttpRequestDecoder;
+import io.netty.handler.codec.http.HttpResponseEncoder;
 
 import java.util.Scanner;
 
@@ -28,6 +30,8 @@ public class Client {
         client.handler(new ChannelInitializer<SocketChannel>() {
              protected void initChannel(SocketChannel socketChannel) throws Exception {
                  socketChannel.pipeline().addLast(new ChannelHandler[]{c});
+                 socketChannel.pipeline().addLast(new HttpResponseEncoder());
+                 socketChannel.pipeline().addLast(new HttpRequestDecoder());
              }
          });
         ChannelFuture connect = client.connect("127.0.0.1", 9999).sync();
