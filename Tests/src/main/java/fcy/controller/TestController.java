@@ -6,6 +6,7 @@ import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
@@ -98,6 +99,7 @@ public class TestController {
         // 查询所有
         //        QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();
         // 根据字段匹配
+
         QueryBuilder queryBuilder = QueryBuilders.matchQuery("id", "1");
         searchSourceBuilder.query(queryBuilder);
 
@@ -112,6 +114,14 @@ public class TestController {
         for (SearchHit searchHit : searchHits) {
             System.out.println(searchHit.getSourceAsString());
         }
+//        方式2
+//        BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
+//        boolQueryBuilder.should();
+//        boolQueryBuilder.mustNot();
+//        boolQueryBuilder.must();
+//        searchSourceBuilder.query(boolQueryBuilder);
+//        tbuser.source(searchSourceBuilder);
+//        SearchResponse searchResponses = restHighLevelClient.search(tbuser, RequestOptions.DEFAULT);
         return null;
     }
 

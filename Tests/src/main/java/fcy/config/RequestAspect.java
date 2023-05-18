@@ -30,7 +30,7 @@ public class RequestAspect {
     /**
      * 重定向到登陆页
      */
-    private static final String REDIRECT = "www.baidu.com";
+    private static final String REDIRECT = "https://www.baidu.com";
 
 
     /**
